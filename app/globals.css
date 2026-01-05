@@ -26,6 +26,8 @@
 
 html {
     font-family: 'Onest', sans-serif;
+    scroll-behavior: smooth;
+    scroll-padding-top: 150px;
 }
 
 /* Estilos para scroll personalizado */

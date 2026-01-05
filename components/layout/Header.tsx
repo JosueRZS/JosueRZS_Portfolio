@@ -62,6 +62,20 @@ export default function Header() {
               Contacto
             </a>
           </li>
+          <li>
+            <a
+              href="https://drive.google.com/file/d/1EJM2vsqoiKqV6xWMfPOZFUmRnshK9HbU/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={clsx(
+                "hover:text-gray-300 focus:outline-none border-b-transparent",
+                "focus:border-b-2 focus:border-border",
+                "transition-colors"
+              )}
+            >
+              CV
+            </a>
+          </li>
         </ul>
       </nav>
 
@@ -115,6 +129,21 @@ export default function Header() {
                 onClick={toggleHeader}
               >
                 Contacto
+              </a>
+            </li>
+            <li className="w-full text-center">
+              <a
+                href="https://drive.google.com/file/d/1EJM2vsqoiKqV6xWMfPOZFUmRnshK9HbU/view?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={clsx(
+                  "px-3 py-4 hover:text-gray-300 focus:outline-none border-b-transparent",
+                  "focus:border-b-2 focus:border-border",
+                  "block"
+                )}
+                onClick={toggleHeader}
+              >
+                CV
               </a>
             </li>
           </ul>
