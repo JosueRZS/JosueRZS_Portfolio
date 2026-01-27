@@ -1,22 +1,23 @@
-import CoverParticles from "@/components/layout/CoverParticles";
-import About from "@/components/section/About";
-import Skills from "@/components/section/Skills";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import Hero from "@/components/section/Hero";
+import GithubGraph from "@/components/section/GithubGraph";
 import Projects from "@/components/section/Projects";
-import Journy from "@/components/section/Journy";
+import Skills from "@/components/section/Skills";
+import Journey from "@/components/section/Journey";
 
-// Página principal del portafolio
 export default function HomePage() {
   return (
-    <>
-      {/* Fondo de partículas interactivo */}
-      <CoverParticles />
-      <div className="space-y-16">
-        {/* Secciones principales */}
-        <About />
+    <div className="min-h-screen max-w-7xl mx-auto px-6 py-8 md:py-12 relative overflow-hidden">
+      <Header />
+      <main>
+        <Hero />
+        <GithubGraph />
         <Skills />
-        <Journy />
+        <Journey />
         <Projects />
-      </div>
-    </>
+      </main>
+      <Footer />
+    </div>
   );
 }

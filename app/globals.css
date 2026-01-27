@@ -1,12 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 @theme {
-    --color-black-deep: #020617;
+    --font-inter: 'Inter', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --color-black-deep: #0a0a0a;
     --color-slate-dark: #0f172a;
     --color-border: #06b6d4;
     --color-strong: #0ea5e9;
     --color-tag: #22d3ee1a;
-    --color-text: #FFFFFF;
+    --color-text: #a3a3a3;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
+  }
+  @media (min-width: 768px) {
+    html {
+      scroll-padding-top: 2rem;
+    }
+  }
+  body {
+    @apply bg-black-deep text-text antialiased selection:bg-white selection:text-black;
+    font-family: var(--font-inter);
+  }
 }
 
 .gradient-main {
@@ -17,31 +37,23 @@
     @apply bg-linear-to-r from-cyan-400/20 via-blue-400/20 to-transparent;
 }
 
-@font-face {
-    font-family: 'Onest';
-    src: url('/fonts/onest-latin-wght-normal.ycwkluYs.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
-html {
-    font-family: 'Onest', sans-serif;
-}
 
 /* Estilos para scroll personalizado */
 ::-webkit-scrollbar {
     width: 6px;
+    height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-    background-color: #0f172a;
+    background: #0a0a0a; /* black-deep */
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #0ea5e9;
-    border-radius: 20px;
+    background: #27272a; /* zinc-800 */
+    border-radius: 10px;
+    border: 1px solid #0a0a0a;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #06b6d4;
+    background: #3f3f46; /* zinc-700 */
 }

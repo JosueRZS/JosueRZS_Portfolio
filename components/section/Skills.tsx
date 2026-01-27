@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { LuMonitorDot, LuServer, LuGitBranch } from "react-icons/lu";
@@ -8,7 +7,6 @@ import { GoDatabase } from "react-icons/go";
 import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
 import { CiCloud } from "react-icons/ci";
 
-// Datos de habilidades organizados por categoría
 const skillsByCategory = [
   {
     category: "Frontend",
@@ -17,8 +15,8 @@ const skillsByCategory = [
       { name: "HTML 5", image: "/icons/html5.svg" },
       { name: "CSS 3", image: "/icons/css3.svg" },
       { name: "JavaScript", image: "/icons/javascript.svg" },
+    //   { name: "Tailwind CSS", image: "/icons/tailwindcss.svg" },
       { name: "React", image: "/icons/react.svg" },
-      { name: "Tailwind CSS", image: "/icons/tailwindcss.svg" },
       { name: "Next.js", image: "/icons/nextjs.svg" },
     ],
   },
@@ -28,7 +26,7 @@ const skillsByCategory = [
     skills: [
       { name: "PHP", image: "/icons/php.svg" },
       { name: "Python", image: "/icons/python.svg" },
-      { name: "C#", image: "/icons/csharp.svg" },
+    //   { name: "C#", image: "/icons/csharp.svg" },
       { name: "Node.js", image: "/icons/nodejs.svg" },
       { name: "NestJS", image: "/icons/nestjs.svg" },
     ],
@@ -46,8 +44,8 @@ const skillsByCategory = [
     category: "Mobile",
     icon: <HiOutlineDevicePhoneMobile />,
     skills: [
-      { name: "Flutter", image: "/icons/flutter.svg" },
-      { name: "Dart", image: "/icons/dart.svg" },
+        { name: "Dart", image: "/icons/dart.svg" },
+        { name: "Flutter", image: "/icons/flutter.svg" },
     ],
   },
   {
@@ -72,80 +70,70 @@ const skillsByCategory = [
 
 export default function Skills() {
   return (
-    <section id="skills" className="pb-10 pt-6">
-      <div>
-        {/* Encabezado de la sección */}
-        <h2 className="text-5xl font-bold text-white mb-14 text-center">
-          Mis{" "}
-          <span className="text-transparent bg-clip-text bg-linear-to-r from-border to-strong">
-            Habilidades
-          </span>
-        </h2>
+    <section id="skills" className="mb-20">
+      <div className="flex items-center gap-4 mb-16">
+        <h2 className="text-2xl font-bold text-white tracking-tight">Habilidades</h2>
+        <div className="h-px grow bg-zinc-900" />
+      </div>
 
-        {/* Grilla de habilidades */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-        >
-          {skillsByCategory.map((category, i) => {
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="bg-slate-dark/50 backdrop-blur-sm border border-border/20 rounded-2xl p-6 transition-all duration-300"
-              >
-                <div className="space-y-8">
-                  {/* Encabezado de categoría */}
-                  <div className="flex items-center gap-4">
-                    <div className="w-16 h-16 rounded-xl bg-linear-to-br from-border/20 to-strong/20 flex items-center justify-center text-4xl">
-                      {category.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-white font-bold text-xl">
-                        {category.category}
-                      </h3>
-                      <p className="text-gray-400 text-sm">
-                        {category.skills.length} tecnologías
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Skills icons grid with tooltips */}
-                  <div className="flex flex-wrap gap-2">
-                    {category.skills.map((skill, j) => (
-                      <motion.div
-                        key={j}
-                        whileHover={{ scale: 1.1, y: -4 }}
-                        className="group relative"
-                      >
-                        <div className="w-14 h-14 rounded-xl bg-linear-to-br from-border/10 to-strong/10 border border-border/20 flex items-center justify-center cursor-pointer group-hover:from-border/30 group-hover:to-strong/30 group-hover:border-border transition-all duration-300 group-hover:shadow-lg group-hover:shadow-border/20">
-                          <Image
-                            src={skill.image}
-                            alt={skill.name}
-                            width={28} // antes 32
-                            height={28}
-                            className="w-8 h-8 transition-transform duration-300 group-hover:scale-110"
-                          />
-                        </div>
-
-                        {/* Tooltip */}
-                        <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-2 bg-slate-dark text-text text-xs rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap font-semibold pointer-events-none shadow-xl z-10">
-                          {skill.name}
-                          <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-border/50 rotate-45" />
-                        </div>
-                      </motion.div>
-                    ))}
-                  </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {skillsByCategory.map((category, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1 }}
+            className="bg-[#0b0b0b] border border-zinc-900 rounded-2xl p-6 transition-all duration-300 group/card"
+          >
+            <div className="space-y-8">
+              {/* Encabezado de categoría */}
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 rounded-2xl bg-zinc-950 border border-zinc-900 flex items-center justify-center text-4xl text-zinc-500 transition-colors capitalize">
+                  {category.icon}
                 </div>
-              </motion.div>
-            );
-          })}
-        </motion.div>
+                <div>
+                  <h3 className="text-zinc-200 font-bold text-xl transition-colors">
+                    {category.category}
+                  </h3>
+                  <p className="text-zinc-500 text-sm font-mono uppercase tracking-wider">
+                    {category.skills.length} Tecnologías
+                  </p>
+                </div>
+              </div>
+
+              {/* Skills icons flex container */}
+              <div className="flex flex-wrap gap-3">
+                {category.skills.map((skill, j) => (
+                  <motion.div
+                    key={j}
+                    whileHover={{ y: -5, scale: 1.05 }}
+                    className="group relative"
+                  >
+                    <div className="w-14 h-14 rounded-xl bg-black-deep border border-zinc-900 flex items-center justify-center cursor-pointer group-hover:border-zinc-500 group-hover:bg-zinc-800/40 transition-all duration-300 group-hover:shadow-[0_0_15px_rgba(255,255,255,0.03)]">
+                      <Image
+                        src={skill.image}
+                        alt={skill.name}
+                        width={32}
+                        height={32}
+                        className="w-8 h-8 transition-all duration-500 group-hover:scale-110"
+                      />
+                    </div>
+
+                    {/* Tooltip */}
+                    <div className="absolute -top-12 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-zinc-900 text-zinc-200 text-xs rounded-lg border border-zinc-800 opacity-0 group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 whitespace-nowrap font-medium pointer-events-none z-20 shadow-xl">
+                      {skill.name}
+                      {/* Rombo / Flecha */}
+                      <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-zinc-900 border-b border-r border-zinc-800 rotate-45" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        ))}
       </div>
     </section>
   );
 }
+

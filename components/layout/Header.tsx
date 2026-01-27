@@ -1,125 +1,138 @@
 "use client";
 
-import clsx from "clsx";
 import { useState, useEffect } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 
-// Rutas de navegación
-const navLinks = [
-  { title: "Habilidades", path: "skills" },
-  { title: "Trayectoria", path: "journy" },
-  { title: "Proyectos", path: "projects" },
+const links = [
+  { href: "/", label: "Inicio" },
+  { href: "#skills", label: "Skills" },
+  { href: "#journey", label: "Trayectoria" },
+  { href: "#projects", label: "Proyectos" },
 ];
 
 export default function Header() {
-  const [headerOpen, setHeaderOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
+  // Prevent scroll when menu is open
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 5);
-    window.addEventListener("scroll", onScroll);
-    // Verificar el estado inicial del scroll
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+    if (isOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isOpen]);
 
-  const toggleHeader = () => setHeaderOpen((prev) => !prev);
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  const handleScroll = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      const targetId = href.replace("#", "");
+      const elem = document.getElementById(targetId);
+      elem?.scrollIntoView({
+        behavior: "smooth",
+      });
+      if (isOpen) setIsOpen(false);
+    }
+  };
 
   return (
-    <header className="fixed top-5 z-50 w-full flex justify-center items-start mt-2">
-      {/* ESCRITORIO (barra de navegación centrada) */}
-      <nav
-        className={`hidden md:block transition-all duration-200 ease-in-out p-4 rounded-full ${
-          scrolled
-            ? "bg-slate-dark/70 backdrop-blur-lg border-border/10 shadow-lg shadow-border/30"
-            : "bg-transparent border-transparent"
-        } border`}
+    <header className="relative flex items-center justify-between mb-24 px-2 z-50">
+      <Link
+        href="/"
+        className="text-white font-mono font-medium tracking-tighter text-xl z-50"
       >
-        <ul className="flex items-center space-x-12 px-4 text-white">
-          {navLinks.map((link) => (
-            <li key={link.path}>
-              <a
-                href={`/#${link.path}`}
-                className={clsx(
-                  "hover:text-gray-300 focus:outline-none border-b-transparent",
-                  "focus:border-b-2 focus:border-border",
-                  "transition-colors"
-                )}
-              >
-                {link.title}
-              </a>
-            </li>
-          ))}
-          <li>
-            <a
-              href="mailto:contact@josuerzs.dev"
-              className={clsx(
-                "hover:text-gray-300 focus:outline-none border-b-transparent",
-                "focus:border-b-2 focus:border-border",
-                "transition-colors"
-              )}
-            >
-              Contacto
-            </a>
-          </li>
-        </ul>
+        &lt; Josue RZS /&gt;
+      </Link>
+
+      {/* Desktop Nav */}
+      <nav className="hidden md:flex gap-8">
+        {links.map((link) => (
+          <Link
+            key={link.label}
+            href={link.href}
+            onClick={(e) => handleScroll(e, link.href)}
+            className="text-sm text-neutral-400 hover:text-white transition-colors"
+          >
+            {link.label}
+          </Link>
+        ))}
+        <a
+          href="mailto:contact@josuerzs.dev"
+          className="text-sm text-neutral-400 hover:text-white transition-colors"
+        >
+          Contacto
+        </a>
       </nav>
 
-      {/* BOTÓN MÓVIL (hamburguesa) */}
+      {/* Mobile Menu Button */}
       <button
-        onClick={toggleHeader}
-        className={`md:hidden absolute right-4 top-3 transition-all duration-300 ${
-          scrolled
-            ? "bg-gray-900 p-2.5 shadow-lg rounded-full text-white"
-            : "p-2 text-white"
-        }`}
-        aria-label="Abrir menú de navegación"
+        onClick={toggleMenu}
+        className="flex flex-col gap-1.5 md:hidden z-50 p-2"
+        aria-label="Menu"
       >
-        {headerOpen ? (
-          <FaTimes className="h-5 w-5" />
-        ) : (
-          <FaBars className="h-5 w-5" />
-        )}
+        <motion.div
+          animate={isOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+          className="w-6 h-0.5 bg-zinc-300 rounded-full"
+        />
+        <motion.div
+          animate={isOpen ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }}
+          className="w-6 h-0.5 bg-zinc-300 rounded-full"
+        />
+        <motion.div
+          animate={isOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+          className="w-6 h-0.5 bg-zinc-300 rounded-full"
+        />
       </button>
 
-      {/* PANEL MÓVIL (menú desplegable) */}
-      {headerOpen && (
-        <div
-          className="mt-2 w-11/12 mx-auto md:hidden absolute top-16 left-1/2 -translate-x-1/2 rounded-lg bg-gray-900/95 shadow-md px-6 py-4"
-          aria-label="Menú de navegación móvil"
-        >
-          <ul className="flex flex-col items-center space-y-4 text-white">
-            {navLinks.map((link) => (
-              <li key={link.path} className="w-full text-center">
-                <a
-                  href={`/#${link.path}`}
-                  className={clsx(
-                    "px-3 py-4 hover:text-gray-300 focus:outline-none border-b-transparent",
-                    "focus:border-b-2 focus:border-border",
-                    "block"
-                  )}
-                  onClick={toggleHeader}
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="fixed inset-0 bg-[#050505] flex flex-col items-center justify-center gap-8 md:hidden z-40"
+          >
+            {links.map((link, idx) => (
+              <motion.div
+                key={link.label}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: idx * 0.1 }}
+              >
+                <Link
+                  href={link.href}
+                  onClick={(e) => handleScroll(e, link.href)}
+                  className="text-3xl font-bold text-neutral-400 hover:text-white transition-colors tracking-tighter"
                 >
-                  {link.title}
-                </a>
-              </li>
+                  {link.label}
+                </Link>
+              </motion.div>
             ))}
-            <li className="w-full text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: links.length * 0.1 }}
+            >
               <a
                 href="mailto:contact@josuerzs.dev"
-                className={clsx(
-                  "px-3 py-4 hover:text-gray-300 focus:outline-none border-b-transparent",
-                  "focus:border-b-2 focus:border-border",
-                  "block"
-                )}
-                onClick={toggleHeader}
+                onClick={toggleMenu}
+                className="text-3xl font-bold text-neutral-400 hover:text-white transition-colors tracking-tighter"
               >
                 Contacto
               </a>
-            </li>
-          </ul>
-        </div>
-      )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   );
 }
