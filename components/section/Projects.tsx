@@ -75,8 +75,8 @@ export default function Projects() {
                 priority={activeIdx === 0}
               />
               {/* Overlay sutil persistente */}
-              <div className="absolute inset-0 bg-black/30" />
-              <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-black/5" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/20 via-transparent to-transparent" />
             </div>
           </div>
 
