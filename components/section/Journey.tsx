@@ -36,19 +36,19 @@ const experiences = [
 const educations = [
   {
     type: "edu",
-    title: "Ingeniero en Ciberseguridad",
+    title: "Ingeniería en Ciberseguridad",
     subtitle: "Universidad de Saint Leo",
     period: "CURSANDO",
   },
   {
     type: "edu",
-    title: "Tecnólogo en Desarrollo Web",
+    title: "Tecnologado en Desarrollo Web",
     subtitle: "ISTE",
     period: "2021 - 2023",
   },
   {
     type: "edu",
-    title: "Bachiller en Ciencias",
+    title: "Bachillerato en Ciencias",
     subtitle: "Unidad Educativa Ambato",
     period: "2013 - 2020",
   },
