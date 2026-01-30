@@ -36,7 +36,7 @@ const experiences = [
 const educations = [
   {
     type: "edu",
-    title: "Ingeniería en Ciberseguridad",
+    title: "Ingeniero en Ciberseguridad",
     subtitle: "Universidad de Saint Leo",
     period: "CURSANDO",
   },
