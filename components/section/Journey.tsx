@@ -38,7 +38,7 @@ const educations = [
     type: "edu",
     title: "Ingeniería en Ciberseguridad",
     subtitle: "Universidad de Saint Leo",
-    period: "CURSANDO",
+    period: "20230 - CURSANDO",
   },
   {
     type: "edu",
