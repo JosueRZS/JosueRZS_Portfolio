@@ -33,7 +33,7 @@ const links = [
   },
   {
     title: "Instagram",
-    url: "https://www.instagram.com/josueruiz.dev/",
+    url: "https://www.instagram.com/josue_rzs/",
     icon: <FaInstagram />,
     description: "Compartiendo un poco sobre mí.",
   },

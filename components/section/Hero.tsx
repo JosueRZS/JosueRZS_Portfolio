@@ -60,7 +60,7 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2 }}
           className="hidden lg:block w-full max-w-180"
         >
-          <DotLottieReact src="/animations/development.lottie" loop autoplay />
+          <DotLottieReact src="/animations/development2.lottie" loop autoplay />
         </motion.div>
       </div>
     </section>

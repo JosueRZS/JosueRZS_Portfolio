@@ -12,6 +12,10 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
+  // Mejorar SEO y rendimiento
+  poweredByHeader: false, // Eliminar header X-Powered-By
+  compress: true, // Habilitar compresión gzip
+  generateEtags: true, // Generar ETags para cache
 };
 
 export default nextConfig;
