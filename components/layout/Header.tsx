@@ -58,14 +58,14 @@ export default function Header() {
             key={link.label}
             href={link.href}
             onClick={(e) => handleScroll(e, link.href)}
-            className="text-sm text-neutral-400 hover:text-white transition-colors"
+            className="text-sm text-neutral-400 hover:text-white hover:border-b hover:border-white transition-colors duration-200"
           >
             {link.label}
           </Link>
         ))}
         <a
           href="mailto:contact@josuerzs.dev"
-          className="text-sm text-neutral-400 hover:text-white transition-colors"
+          className="text-sm text-neutral-400 hover:text-white hover:border-b hover:border-white transition-colors duration-200"
         >
           Contacto
         </a>
