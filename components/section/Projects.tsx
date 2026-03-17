@@ -1,11 +1,19 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import { FaGithub, FaGlobe } from "react-icons/fa";
 
 const projects = [
+  {
+    title: "Blackanderlust",
+    description:
+      "Landing Page Coorporativa para empresa de relaciones públicas ambateña. Diseño elegante y dinámico con enfoque en storytelling visual y catálogo de servicios.",
+    media: "/images/screenshots/Blackanderlust_1920.png",
+    demo: "https://blackanderlust.com/",
+    github: null,
+  },
   {
     title: "Marcfashion",
     description:
