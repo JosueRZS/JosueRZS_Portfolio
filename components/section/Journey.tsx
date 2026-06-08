@@ -1,17 +1,25 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Image from "next/image";
-import { FaBriefcase, FaGraduationCap } from "react-icons/fa";
-import { PiCertificateBold } from "react-icons/pi";
+import { motion } from "framer-motion";
 import { FiExternalLink } from "react-icons/fi";
+import { PiCertificateBold } from "react-icons/pi";
+import { FaBriefcase, FaGraduationCap } from "react-icons/fa";
 
 const experiences = [
   {
     type: "work",
+    title: "Analista de Desarrollo",
+    company: "Grupo Ambacar",
+    period: "2026 - ACTUALMENTE",
+    description:
+      "Desarrollo y optimización de aplicaciones web, integración de APIs y mantenimiento de sistemas empresariales.",
+  },
+  {
+    type: "work",
     title: "Desarrollador de Software",
     company: "Gala Corp",
-    period: "2025 - ACTUALMENTE",
+    period: "2025 - 2026",
     description:
       "Desarrollo de aplicaciones web y mantenimiento de sistemas críticos para la gestión empresarial.",
   },
@@ -34,12 +42,6 @@ const experiences = [
 ];
 
 const educations = [
-  {
-    type: "edu",
-    title: "Ingeniería en Ciberseguridad",
-    subtitle: "Universidad de Saint Leo",
-    period: "20230 - CURSANDO",
-  },
   {
     type: "edu",
     title: "Tecnologado en Desarrollo Web",

@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { LuMonitorDot, LuServer, LuGitBranch } from "react-icons/lu";
+import { CiCloud } from "react-icons/ci";
 import { GoDatabase } from "react-icons/go";
 import { HiOutlineDevicePhoneMobile } from "react-icons/hi2";
-import { CiCloud } from "react-icons/ci";
+import { LuMonitorDot, LuServer, LuGitBranch } from "react-icons/lu";
 
 const skillsByCategory = [
   {

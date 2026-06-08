@@ -1,14 +1,17 @@
 "use client";
 
-import { GitHubCalendar } from "react-github-calendar";
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { GitHubCalendar } from "react-github-calendar";
 
 export default function GithubGraph() {
+  const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  // Fallback: Si por alguna razón la API de GitHub no responde o falla,
-  // quitamos el skeleton después de 6 segundos para no bloquear la experiencia.
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
@@ -39,27 +42,29 @@ export default function GithubGraph() {
           </div>
         )}
 
-        <div
-          className={`w-full flex justify-center transition-all duration-1000 ${loading ? "opacity-0 scale-[0.98]" : "opacity-100 scale-100"}`}
-        >
-          <GitHubCalendar
-            username="JosueRZS"
-            showWeekdayLabels
-            transformData={(data) => {
-              if (loading) setTimeout(() => setLoading(false), 300);
-              return data;
-            }}
-            labels={{
-              totalCount: "{{count}} contribuciones en el último año",
-            }}
-            theme={{
-              dark: ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"],
-            }}
-            fontSize={15}
-            blockSize={16}
-            blockMargin={5}
-          />
-        </div>
+        {mounted && (
+          <div
+            className={`w-full flex justify-center transition-all duration-1000 ${loading ? "opacity-0 scale-[0.98]" : "opacity-100 scale-100"}`}
+          >
+            <GitHubCalendar
+              username="JosueRZS"
+              showWeekdayLabels
+              transformData={(data) => {
+                if (loading) setTimeout(() => setLoading(false), 300);
+                return data;
+              }}
+              labels={{
+                totalCount: "{{count}} contribuciones en el último año",
+              }}
+              theme={{
+                dark: ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"],
+              }}
+              fontSize={15}
+              blockSize={16}
+              blockMargin={5}
+            />
+          </div>
+        )}
       </div>
     </section>
   );
